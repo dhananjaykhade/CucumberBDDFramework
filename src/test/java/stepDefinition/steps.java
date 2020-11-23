@@ -18,8 +18,8 @@ public class steps {
 	@Given("^user navigates to the website (.*)$")
 	public void user_navigates_to_the_website(String arg1) throws Throwable {
 		try {
-			String chromePath = System.getProperty("user.dir") + "\\Drivers\\geckodriver.exe";
-			System.setProperty("webdriver.gecko.driver", chromePath);
+			String browserPath = System.getProperty("user.dir") + "\\Drivers\\geckodriver.exe";
+			System.setProperty("webdriver.gecko.driver", browserPath);
 			
 			driver = new FirefoxDriver();
 			driver.get(arg1);
