@@ -8,21 +8,28 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import cucumber.api.java.en.*;
+import data.JsonDataReader;
+import data.LoadProperities;
 import pageObjects.LoginPage;
 
 public class steps {
 
 	public WebDriver driver;
 	public LoginPage lp;
+	public JsonDataReader jr;
+	public LoadProperities lpr;
 
-	@Given("^user navigates to the website (.*)$")
-	public void user_navigates_to_the_website(String arg1) throws Throwable {
+	@Given("^user navigates to the website$")
+	public void user_navigates_to_the_website() throws Throwable {
 		try {
+			
 			String browserPath = System.getProperty("user.dir") + "\\Drivers\\geckodriver.exe";
 			System.setProperty("webdriver.gecko.driver", browserPath);
-			
+
 			driver = new FirefoxDriver();
-			driver.get(arg1);
+			driver.get(lpr.userData.getProperty("url"));
+			/* driver.get(lpr.userData.getProperty("firstname")); */
+			System.out.println(lpr.userData.getProperty("firstname"));
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			driver.close();
 			lp = new LoginPage(driver);
